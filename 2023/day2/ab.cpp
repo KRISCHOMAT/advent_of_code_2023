@@ -10,9 +10,7 @@
 
 class Round{
     public:
-        int red;
-        int green;
-        int blue;
+        int red, green, blue;
         Round(std::string content):red(0), green(0), blue(0){
             size_t colors[3] = {content.find("red"),content.find("green"),content.find("blue")};
             for(int i = 0; i < 3; i++){
@@ -43,8 +41,7 @@ class Round{
         bool isValid(){
             return (red <= TOTAL_RED && 
                     green <= TOTAL_GREEN && 
-                    blue <= TOTAL_BLUE
-                    );
+                    blue <= TOTAL_BLUE);
         }
 };
 
@@ -68,7 +65,7 @@ int main(){
             start = end + 1;
             end = line.find(";", start);
         }
-            roundContents.push_back(line.substr(start, end - start));
+        roundContents.push_back(line.substr(start, end - start));
 
         bool isValid = true;
         int minRed = 0, minGreen = 0, minBlue = 0;
