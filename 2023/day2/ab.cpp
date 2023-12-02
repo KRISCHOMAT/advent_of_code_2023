@@ -17,29 +17,30 @@ class Round{
             size_t r = content.find("red");
             size_t g = content.find("green");
             size_t b = content.find("blue");
-            if(r != std::string::npos){
-                std::string num;
-                if(isdigit(content[r-3])){
-                    num += content[r-3];
+            size_t colors[3] = {content.find("red"),content.find("green"),content.find("blue")};
+            for(int i = 0; i < 3; i++){
+                if(colors[i] != std::string::npos){
+                    std::string num;
+                    if(isdigit(content[colors[i]-3])){
+                        num += content[colors[i]-3];
+                    }
+                    num += content[colors[i]-2];
+                    switch (i)
+                    {
+                    case 0:
+                        red = std::stoi(num);
+                        break;
+                    case 1:
+                        green = std::stoi(num);
+                        break;
+                    case 2:
+                        blue = std::stoi(num);
+                        break;
+                    
+                    default:
+                        break;
+                    }
                 }
-                num += content[r-2];
-                red = std::stoi(num);
-            }
-            if(g != std::string::npos){
-                std::string num;
-                if(isdigit(content[g-3])){
-                    num += content[g-3];
-                }
-                num += content[g-2];
-                green = std::stoi(num);
-            }
-            if(b != std::string::npos){
-                std::string num;
-                if(isdigit(content[b-3])){
-                    num += content[b-3];
-                }
-                num += content[b-2];
-                blue = std::stoi(num);
             }
         }
         bool isValid(){
