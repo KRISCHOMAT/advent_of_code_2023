@@ -14,9 +14,6 @@ class Round{
         int green;
         int blue;
         Round(std::string content):red(0), green(0), blue(0){
-            size_t r = content.find("red");
-            size_t g = content.find("green");
-            size_t b = content.find("blue");
             size_t colors[3] = {content.find("red"),content.find("green"),content.find("blue")};
             for(int i = 0; i < 3; i++){
                 if(colors[i] != std::string::npos){
@@ -100,7 +97,7 @@ int main(){
         }
         roundNum ++;
     }
-    
+
     std::cout << "ResultA: " << result << std::endl;
     std::cout << "ResultB: " << powers << std::endl;
 }
