@@ -49,9 +49,6 @@ class Round{
                     blue <= TOTAL_BLUE
                     );
         }
-        void print(){
-            std::cout << "red: " << red << " green: " << green << " blue: " << blue << " | ";
-        }
 };
 
 int main(){
@@ -103,8 +100,7 @@ int main(){
         }
         roundNum ++;
     }
-
+    
     std::cout << "ResultA: " << result << std::endl;
     std::cout << "ResultB: " << powers << std::endl;
-
 }
