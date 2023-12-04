@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+// #include <chrono> // Add this line for measuring time
 
 #define TOTAL_RED 12
 #define TOTAL_GREEN 13
@@ -46,6 +47,7 @@ class Round{
 };
 
 int main(){
+    // auto start = std::chrono::high_resolution_clock::now(); // Start measuring time
 
     std::ifstream file("input.txt");
     std::string line;
@@ -97,4 +99,9 @@ int main(){
 
     std::cout << "ResultA: " << result << std::endl;
     std::cout << "ResultB: " << powers << std::endl;
+
+    // auto stop = std::chrono::high_resolution_clock::now(); // Stop measuring time
+    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    // std::cout << "Time taken by program is: " << duration.count() / 1000000.0 << " seconds" << std::endl;
 }
