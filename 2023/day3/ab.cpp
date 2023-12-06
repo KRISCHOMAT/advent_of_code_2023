@@ -32,7 +32,7 @@ bool hasSymbol(Num &num, std::vector<Symbol> &symbols){
     return false;
 }
 
-int isEngine(Symbol &symbol, std::vector<Num> &nums){
+int isEngine(Symbol const& symbol, std::vector<Num> const &nums){
     int numAmount = 0;
     int result = 0;
     if(symbol.symbol != '*') return -1;
@@ -72,13 +72,13 @@ int main() {
             if(isdigit(current_line[i])){
                 currentNum += current_line[i];
             } else if(current_line[i] != '.' && !isdigit(current_line[i])){
-                Symbol symbol;
+                Symbol symbol{};
                 symbol.index = i;
                 symbol.line = lineId;
                 symbol.symbol = current_line[i];
                 symbols.push_back(symbol);
                 if(!currentNum.empty()){
-                    Num num;
+                    Num num{};
                     num.val = stoi(currentNum);
                     num.index = i - currentNum.size();
                     num.length = currentNum.size();
@@ -87,7 +87,7 @@ int main() {
                     currentNum.clear();
                 }
             } else if(!currentNum.empty()){
-                Num num;
+                Num num{};
                 num.val = stoi(currentNum);
                 num.index = i - currentNum.size();
                 num.length = currentNum.size();
@@ -96,7 +96,7 @@ int main() {
                 currentNum.clear();
             }
             if(i == current_line.size() -1 && !currentNum.empty()){
-                Num num;
+                Num num{};
                 num.val = stoi(currentNum);
                 num.index = i - currentNum.size();
                 num.length = currentNum.size();
@@ -116,7 +116,7 @@ int main() {
         }
     }
 
-    for(Symbol symbol : symbols){
+    for(const Symbol& symbol : symbols){
         int engine = isEngine(symbol,nums);
         //std::cout << engine << " ";
         if(engine != -1){
