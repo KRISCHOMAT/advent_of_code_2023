@@ -1,0 +1,42 @@
+time: 7
+bestDistance: 9
+int options = 0;
+
+i = 1; i < time; i++{
+    int remainingTime = time - 1;
+    int Distance = remainingTime * i;
+    if(Distance > bestDistance){
+        options++;
+    }
+}
+
+hold: 1
+remainingTime: 6
+speed: 1mm/ms 
+Distance: 6mm
+
+hold: 2
+remainingTime = 5
+speed: 2mm/ms
+Distance: 10mm
+
+hold: 3
+remainingTime = 4
+speed: 3mm/ms
+Distance: 12mm
+
+hold: 4
+remainingTime = 3
+speed: 4mm/ms
+Distance: 12mm
+
+hold: 5
+remainingTime = 2
+speed: 5mm/ms
+Distance: 10
+
+hold 6
+remainingTime = 1
+speed: 6mm/ms
+Distance: 6
+
