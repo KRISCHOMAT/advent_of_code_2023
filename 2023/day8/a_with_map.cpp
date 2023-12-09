@@ -1,10 +1,7 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <map>
 #include <fstream>
-
-
+#include <unordered_map>
 
 struct Directions{
     std::string left;
@@ -13,7 +10,7 @@ struct Directions{
 
 class Nodes{
     private:
-        std::map<std::string, Directions> nodes;
+        std::unordered_map<std::string, Directions> nodes;
         Directions current;
         void updateCurrentPos(char dir, bool& found){
             if(dir == 'L'){
@@ -44,8 +41,8 @@ class Nodes{
                 for(char dir : path){
                     attempts++;
                     updateCurrentPos(dir, found);
+                    if(found) break;
                 }
-                if(found) break;
             }
             std::cout << "Attempts: " << attempts << std::endl;
         }
@@ -55,12 +52,9 @@ int main(){
 
     std::ifstream file("input.txt");
     std::string line;
-    std::string path;
     Nodes nodes;
 
-    getline(file, path);
-
-    nodes.path = path;
+    getline(file, nodes.path);
 
     while(getline(file,line)){
         if(line.size()){
