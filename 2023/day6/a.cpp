@@ -63,7 +63,7 @@ int main() {
     int options = 0;
     long time = stol(timeB);
     long bestDistance = stol(distanceB);
-    for(int i = 1; i < time; i++){
+    for(long i = 1; i < time; i++){
         long remainingTime = time - i;
         long distance = remainingTime * i;
         if(distance > bestDistance){

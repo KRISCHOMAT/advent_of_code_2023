@@ -2,9 +2,9 @@ time: 7
 bestDistance: 9
 int options = 0;
 
-i = 1; i < time; i++{
-    int remainingTime = time - 1;
-    int Distance = remainingTime * i;
+y = 1; y < time; y++{
+    int remainingTime = time - y;
+    int Distance = remainingTime * y;
     if(Distance > bestDistance){
         options++;
     }
