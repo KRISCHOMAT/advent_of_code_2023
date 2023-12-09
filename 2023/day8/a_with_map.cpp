@@ -14,16 +14,26 @@ struct Directions{
 class Nodes{
     private:
         std::map<std::string, Directions> nodes;
+        Directions current;
+        void updateCurrentPos(char dir, bool& found){
+            if(dir == 'L'){
+                if(current.left == "ZZZ"){
+                    found = true;
+                }
+                current = nodes[current.left];
+            } else {
+                if(current.right == "ZZZ"){
+                    found = true;
+                } 
+                current = nodes[current.right];
+            }   
+        }
 
     public: 
         std::string path;
-        Directions current;
+        
         void addNode(std::string pos, Directions& dirs){
             nodes[pos] = dirs;
-        }
-
-        Directions& getDirs(std::string pos){
-            return nodes[pos];
         }
 
         void traverse(){
@@ -33,36 +43,12 @@ class Nodes{
             while(!found){
                 for(char dir : path){
                     attempts++;
-                    if(dir == 'L'){
-                        if(current.left == "ZZZ"){
-                            found = true;
-                            break;
-                        }
-                        current = nodes[current.left];
-                    } else {
-                        if(current.right == "ZZZ"){
-                            found = true;
-                            break;
-                        } 
-                        current = nodes[current.right];
-                    }   
+                    updateCurrentPos(dir, found);
                 }
+                if(found) break;
             }
             std::cout << "Attempts: " << attempts << std::endl;
         }
-
-
-
-        void printAll(){
-            for(const auto& pair : nodes){
-                std::cout << "Position: " << pair.first 
-                        << " Left: " << pair.second.left
-                        << " Right: " << pair.second.right 
-                        << std::endl;
-            }        
-        }
-    
-
 };
 
 int main(){
@@ -82,8 +68,6 @@ int main(){
             nodes.addNode(line.substr(0,3), dirs);
         }
     }
-
-    Directions& dirs = nodes.getDirs("AAA");
 
     nodes.traverse();
 
