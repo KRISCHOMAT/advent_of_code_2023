@@ -12,6 +12,7 @@ struct Node{
 class Nodes{
     private:
         std::vector<Node> nodes;
+        std::vector<Node> ghosts;
         Node current;
         
         void setCurrent() {
@@ -65,6 +66,55 @@ class Nodes{
                 }
             }
         }
+
+        void findGhostStarts(){
+            for(Node node : nodes){
+                if(node.position[2] == 'A'){
+                    ghosts.push_back(node);
+                }
+            }
+        }
+
+        void printGhosts(){
+            for(Node ghost : ghosts){
+                std::cout << ghost.position << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        void findNextGhosts(){
+            bool isEnd = false;
+            long long times = 0;
+            while(!isEnd){
+                for(char dir : path){
+                    times++;
+                    for(Node& ghost : ghosts){
+                        for(const Node& node : nodes){
+                            if(dir == 'L' && ghost.left == node.position){
+                                ghost = node;
+                                break;
+                            } else if(dir == 'R' && ghost.right == node.position){
+                                ghost = node;
+                                break;
+                            }
+                        }
+                    }
+
+                    for(Node ghost : ghosts){
+                        if(ghost.position[2] == 'Z'){
+                            isEnd = true;
+                        } else {
+                            isEnd = false;
+                            break;
+                        }
+                    }
+                    if(isEnd) break;
+                }
+            }
+
+            std::cout << "times: " << times << std::endl;
+        }
+
 };
 
 int main(){
@@ -86,6 +136,9 @@ int main(){
     }
 
     nodes.traverse();
-
     std::cout << "Result: " << nodes.pathLength << std::endl;
+    // nodes.findGhostStarts();
+    // nodes.findNextGhosts();
+    // nodes.printGhosts();
+
 }
