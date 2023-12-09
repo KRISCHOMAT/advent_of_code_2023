@@ -28,7 +28,6 @@ class Nodes{
                     if(nodes[i].position == current.right){
                         current = nodes[i];
                         return true;
-                        break;
                     }
                 }
             } else if(direction == 'L'){
@@ -36,7 +35,6 @@ class Nodes{
                     if(nodes[i].position == current.left){
                         current = nodes[i];
                         return true;
-                        break;
                     }
                 }
             }
@@ -60,8 +58,8 @@ class Nodes{
         void traverse(){
             setCurrent();
             while(current.position != "ZZZ"){
-                for(int i = 0; i < path.size(); i++){
-                    findNextNode(path[i]);
+                for(char dir : path){
+                    findNextNode(dir);
                     pathLength++;
                     if(current.position == "ZZZ") break;
                 }
